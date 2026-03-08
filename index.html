@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>オンライン自習室 | Focus Room v14</title>
+  <title>オンライン自習室 | Focus Room v15</title>
   <meta name="theme-color" content="#0b1020" />
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -21,117 +21,95 @@
     </div>
 
     <header class="topbar">
-      <div>
+      <div class="topbar-left">
         <p class="eyebrow">FOCUS ROOM</p>
         <h1>オンライン自習室</h1>
         <p id="lineProfileName" class="subtitle">利用情報を読み込み中...</p>
       </div>
-      <button id="openSettingsBtn" class="icon-btn" aria-label="設定">⚙</button>
+      <div class="topbar-actions">
+        <button id="openHistoryBtn" class="icon-btn" aria-label="履歴">▤</button>
+        <button id="openSettingsBtn" class="icon-btn" aria-label="設定">⚙</button>
+      </div>
     </header>
 
-    <main class="main-layout">
-      <section class="hero-card">
-        <div class="surveillance-banner">
-          <span class="banner-dot"></span>
-          <span id="surveillanceBannerText">このルームは在席確認つきで進行しています</span>
+    <section class="hero-card">
+      <div class="surveillance-banner">
+        <span class="banner-dot"></span>
+        <span id="surveillanceBannerText">このルームは在席確認つきで進行しています</span>
+      </div>
+
+      <div class="hero-grid">
+        <div class="hero-main">
+          <p class="section-label">残り時間</p>
+          <p id="goalTimer" class="hero-time">25:00</p>
         </div>
-
-        <div class="hero-row">
-          <div>
-            <p class="section-label">残り時間</p>
-            <p id="goalTimer" class="hero-time">25:00</p>
+        <div class="hero-side">
+          <div class="hero-mini">
+            <span>状態</span>
+            <strong id="sessionType">未開始</strong>
           </div>
-          <div class="hero-status-box">
-            <p class="section-label">現在の状態</p>
-            <p id="sessionType" class="hero-state-text">未開始</p>
-          </div>
-        </div>
-
-        <div class="teacher-strip">
-          <div class="teacher-avatar-wrap">
-            <div class="teacher-ring outer"></div>
-            <div class="teacher-ring inner"></div>
-            <div class="teacher-avatar">
-              <div class="coach-face">
-                <span class="eye left"></span>
-                <span class="eye right"></span>
-                <span class="mouth"></span>
-              </div>
-            </div>
-          </div>
-
-          <div class="teacher-main">
-            <div class="teacher-row-top">
-              <strong id="coachNameInline">SENSEI ROOM</strong>
-              <span id="coachStatePill" class="pill pill-danger">監視中</span>
-            </div>
-            <p id="coachWidgetStatus" class="teacher-status strong">学習状況をリアルタイムで確認しています</p>
-            <div class="monitor-grid">
-              <div class="monitor-chip">
-                <span class="monitor-dot"></span>
-                <span id="monitoringText">在席確認中</span>
-              </div>
-              <div class="monitor-chip subtle">
-                <span class="monitor-mini-dot"></span>
-                <span id="monitoringSubText">離席検知 有効</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="teacher-alert critical">
-          <span class="alert-label">監視メッセージ</span>
-          <p id="teacherAlertText">このルームでは離席・画面切替・学習停止を前提に確認しながら進行します。今のタスクに集中してください。</p>
-        </div>
-
-        <div class="summary-grid">
-          <div class="summary-card emphasis">
-            <span>経過時間</span>
-            <strong id="elapsedTime">00:00:00</strong>
-          </div>
-          <div class="summary-card emphasis">
-            <span>本日の累計</span>
-            <strong id="dailyTotal">00:00</strong>
-          </div>
-          <div class="summary-card alertish">
-            <span>離席回数</span>
-            <strong id="blurCount">0</strong>
-          </div>
-          <div class="summary-card">
-            <span>カメラ状態</span>
-            <strong id="cameraStatus">待機中</strong>
-          </div>
-          <div class="summary-card">
+          <div class="hero-mini">
             <span>集中スコア</span>
             <strong id="focusScore">100</strong>
           </div>
-          <div class="summary-card">
-            <span>達成率</span>
-            <strong id="completionRate">0%</strong>
-          </div>
         </div>
+      </div>
 
-        <div class="active-task-box">
-          <p class="active-task-label">進行中タスク</p>
-          <strong id="activeTaskName">まだありません</strong>
-          <p id="activeTaskMeta" class="active-task-meta">タスクを追加して進行中にするとここに固定表示されます。</p>
-        </div>
-
-        <div class="message-card compact">
-          <p class="section-label">メッセージ</p>
-          <p id="focusMessage" class="message-text">目標時間を設定して、今日のタスクを追加してから入室してください。</p>
-        </div>
-      </section>
-
-      <section class="panel-stack">
-        <section id="sectionActions" class="content-panel active">
-          <div class="panel-header">
-            <div>
-              <p class="eyebrow">ACTIONS</p>
-              <h2>学習操作</h2>
+      <div class="teacher-strip">
+        <div class="teacher-avatar-wrap">
+          <div class="teacher-ring outer"></div>
+          <div class="teacher-ring inner"></div>
+          <div class="teacher-avatar">
+            <div class="coach-face">
+              <span class="eye left"></span>
+              <span class="eye right"></span>
+              <span class="mouth"></span>
             </div>
           </div>
-          <div class="button-grid">
+        </div>
+
+        <div class="teacher-main-block">
+          <div class="teacher-row-top">
+            <strong id="coachNameInline">SENSEI ROOM</strong>
+            <span id="coachStatePill" class="pill pill-danger">監視中</span>
+          </div>
+          <p id="coachWidgetStatus" class="teacher-status strong">学習状況をリアルタイムで確認しています</p>
+          <div class="monitor-row">
+            <span class="monitor-dot"></span>
+            <span id="monitoringText">在席確認中</span>
+            <span class="monitor-divider">/</span>
+            <span id="monitoringSubText">離席検知 有効</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat-chip"><span>経過</span><strong id="elapsedTime">00:00:00</strong></div>
+        <div class="stat-chip"><span>本日</span><strong id="dailyTotal">00:00</strong></div>
+        <div class="stat-chip alert"><span>離席</span><strong id="blurCount">0</strong></div>
+        <div class="stat-chip"><span>達成率</span><strong id="completionRate">0%</strong></div>
+      </div>
+
+      <div class="active-task-box">
+        <p class="active-task-label">進行中タスク</p>
+        <strong id="activeTaskName">まだありません</strong>
+        <p id="activeTaskMeta" class="active-task-meta">タスクを追加して進行中にするとここに固定表示されます。</p>
+      </div>
+    </section>
+
+    <main class="content-shell">
+      <section id="viewActions" class="content-view active">
+        <div class="panel fixed-fill">
+          <div class="panel-header">
+            <div><p class="eyebrow">ACTIONS</p><h2>学習操作</h2></div>
+          </div>
+
+          <div class="message-card compact inner-message">
+            <p class="section-label">メッセージ</p>
+            <p id="focusMessage" class="message-text">目標時間を設定して、今日のタスクを追加してから入室してください。</p>
+          </div>
+
+          <div class="actions-grid">
             <button id="startBtn" class="btn btn-primary">入室して開始</button>
             <button id="pauseTimerBtn" class="btn btn-secondary" disabled>タイマー一時停止</button>
             <button id="breakBtn" class="btn btn-secondary" disabled>休憩する</button>
@@ -146,14 +124,18 @@
             <div class="mini-stat"><span>休憩回数</span><strong id="breakCount">0</strong></div>
             <div class="mini-stat"><span>停止回数</span><strong id="pauseCount">0</strong></div>
           </div>
-        </section>
 
-        <section id="sectionTasks" class="content-panel">
+          <div class="room-meta compact-meta">
+            <div class="meta-row"><span>ルーム状態</span><strong id="watchState">待機中</strong></div>
+            <div class="meta-row"><span>カメラ状態</span><strong id="cameraStatus">待機中</strong></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="viewTasks" class="content-view">
+        <div class="panel fixed-fill">
           <div class="panel-header">
-            <div>
-              <p class="eyebrow">TASKS</p>
-              <h2>タスク管理</h2>
-            </div>
+            <div><p class="eyebrow">TASKS</p><h2>タスク管理</h2></div>
             <span id="taskSummaryCount" class="pill">0件</span>
           </div>
 
@@ -162,13 +144,13 @@
             <button id="taskTabAddBtn" class="subtab">追加</button>
           </div>
 
-          <div id="taskTabList" class="subtab-panel active">
-            <div id="taskManagerList" class="task-list">
+          <div id="taskTabList" class="subtab-panel active list-fill">
+            <div id="taskManagerList" class="task-list scroll-list">
               <p class="empty-text">追加したタスクはここに表示されます。</p>
             </div>
           </div>
 
-          <div id="taskTabAdd" class="subtab-panel">
+          <div id="taskTabAdd" class="subtab-panel form-fill">
             <div class="form-stack">
               <label class="field">
                 <span>タスク名</span>
@@ -198,36 +180,35 @@
                   </select>
                 </label>
               </div>
-              <label class="field">
+              <label class="field grow">
                 <span>メモ</span>
                 <textarea id="taskMemoInput" rows="4" maxlength="200" placeholder="補足メモがあれば入力"></textarea>
               </label>
               <button id="addTaskBtn" class="btn btn-primary">タスクを追加</button>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section id="sectionRoom" class="content-panel">
+      <section id="viewRoom" class="content-view">
+        <div class="panel fixed-fill">
           <div class="panel-header">
-            <div>
-              <p class="eyebrow">ROOM</p>
-              <h2>ルーム機能</h2>
-            </div>
+            <div><p class="eyebrow">ROOM</p><h2>ルーム機能</h2></div>
           </div>
 
-          <div class="button-grid">
+          <div class="actions-grid room-actions">
             <button id="toggleCamBtn" class="btn btn-secondary" disabled>カメラ停止</button>
             <button id="wakeLockBtn" class="btn btn-secondary">画面スリープ防止</button>
             <button id="fullscreenBtn" class="btn btn-secondary">フルスクリーン</button>
             <button id="restartSessionBtn" class="btn btn-secondary">設定で再開始</button>
           </div>
 
-          <div class="camera-frame">
+          <div class="camera-frame flex-camera">
             <video id="selfVideoMain" autoplay playsinline muted></video>
             <span class="camera-large-label">SELF VIEW</span>
           </div>
 
-          <div class="double-grid">
+          <div class="double-grid bottom-gap">
             <label class="field">
               <span>サウンド種別</span>
               <select id="soundModeSelect">
@@ -243,71 +224,32 @@
             </label>
           </div>
           <button id="soundToggleBtn" class="btn btn-secondary">サウンド開始</button>
-        </section>
+        </div>
+      </section>
 
-        <section id="sectionStats" class="content-panel">
+      <section id="viewStats" class="content-view">
+        <div class="panel fixed-fill">
           <div class="panel-header">
-            <div>
-              <p class="eyebrow">STATS</p>
-              <h2>記録と履歴</h2>
-            </div>
+            <div><p class="eyebrow">STATS</p><h2>記録</h2></div>
           </div>
 
           <div class="mini-grid">
-            <div class="mini-stat"><span>昨日との比較</span><strong id="dailyComparison">±0分</strong></div>
+            <div class="mini-stat"><span>昨日との差</span><strong id="dailyComparison">±0分</strong></div>
             <div class="mini-stat"><span>カメラ停止時間</span><strong id="camOffTime">0秒</strong></div>
-            <div class="mini-stat"><span>ルーム状態</span><strong id="watchState">待機中</strong></div>
-            <div class="mini-stat"><span>起動方法</span><strong id="launchMode">通常ブラウザ</strong></div>
+            <div class="mini-stat"><span>起動方法</span><strong id="launchModeInline">通常ブラウザ</strong></div>
+            <div class="mini-stat"><span>監視状態</span><strong id="statsMonitorState">在席確認前</strong></div>
           </div>
 
-          <div class="button-grid">
-            <button id="openHistoryBtn" class="btn btn-secondary">履歴を見る</button>
+          <div class="message-card compact inner-message stats-message">
+            <p class="section-label">監視メッセージ</p>
+            <p id="statsTeacherAlert" class="message-text">このルームでは離席・画面切替・学習停止を前提に確認しながら進行します。今のタスクに集中してください。</p>
+          </div>
+
+          <div class="actions-grid stats-actions">
+            <button id="statsOpenHistoryBtn" class="btn btn-secondary">履歴を見る</button>
             <button id="exportLogsBtn" class="btn btn-secondary">ログを書き出す</button>
           </div>
-        </section>
-
-        <section id="sectionSettings" class="content-panel">
-          <div class="panel-header">
-            <div>
-              <p class="eyebrow">SETTINGS</p>
-              <h2>設定</h2>
-            </div>
-          </div>
-
-          <div class="form-stack">
-            <label class="field">
-              <span>目標時間設定</span>
-              <select id="goalMinutesSelect">
-                <option value="15">15分</option>
-                <option value="25" selected>25分</option>
-                <option value="30">30分</option>
-                <option value="45">45分</option>
-                <option value="60">60分</option>
-                <option value="90">90分</option>
-              </select>
-            </label>
-
-            <label class="field">
-              <span>休憩時間（自動）</span>
-              <select id="breakMinutesSelect">
-                <option value="3">3分</option>
-                <option value="5" selected>5分</option>
-                <option value="10">10分</option>
-              </select>
-            </label>
-
-            <label class="field">
-              <span>講師名表示</span>
-              <input id="coachNameInput" type="text" value="SENSEI ROOM" maxlength="40" />
-            </label>
-
-            <label class="field">
-              <span>次回目標</span>
-              <input id="nextGoalInput" type="text" maxlength="120" placeholder="次回の目標を入力" />
-            </label>
-            <button id="saveNextGoalBtn" class="btn btn-secondary">次回目標を保存</button>
-          </div>
-        </section>
+        </div>
       </section>
     </main>
 
@@ -316,8 +258,46 @@
       <button id="tabTasksBtn" class="bottom-tab">タスク</button>
       <button id="tabRoomBtn" class="bottom-tab">ルーム</button>
       <button id="tabStatsBtn" class="bottom-tab">記録</button>
-      <button id="tabSettingsBtn" class="bottom-tab">設定</button>
     </nav>
+
+    <div id="settingsModal" class="modal hidden">
+      <div class="modal-card">
+        <div class="modal-head">
+          <div><p class="eyebrow">SETTINGS</p><h2>設定</h2></div>
+          <button id="closeSettingsBtn" class="icon-btn">×</button>
+        </div>
+
+        <div class="form-stack">
+          <label class="field">
+            <span>目標時間設定</span>
+            <select id="modalGoalMinutesSelect">
+              <option value="15">15分</option>
+              <option value="25" selected>25分</option>
+              <option value="30">30分</option>
+              <option value="45">45分</option>
+              <option value="60">60分</option>
+              <option value="90">90分</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>休憩時間（自動）</span>
+            <select id="modalBreakMinutesSelect">
+              <option value="3">3分</option>
+              <option value="5" selected>5分</option>
+              <option value="10">10分</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>講師名表示</span>
+            <input id="modalCoachNameInput" type="text" maxlength="40" />
+          </label>
+
+          <button id="saveSettingsBtn" class="btn btn-primary">設定を保存</button>
+        </div>
+      </div>
+    </div>
 
     <div id="reportModal" class="modal hidden">
       <div class="modal-card">
@@ -326,6 +306,13 @@
           <button id="closeReportBtn" class="icon-btn">×</button>
         </div>
         <div id="reportBody" class="report-body"></div>
+        <div class="form-stack report-goal-block">
+          <label class="field">
+            <span>次回目標</span>
+            <input id="nextGoalInput" type="text" maxlength="120" placeholder="次回の目標を入力" />
+          </label>
+          <button id="saveNextGoalBtn" class="btn btn-secondary">次回目標を保存</button>
+        </div>
         <div class="modal-actions">
           <button id="copyReportBtn" class="btn btn-secondary">レポートをコピー</button>
         </div>
