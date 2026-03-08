@@ -381,23 +381,18 @@
             </div>
           </div>
 
-          <button class="top-add-btn">＋ 目標を追加</button>
+          <section class="card form-card">
+            <input id="goalTitleInput" class="field" placeholder="目標名 例：今週の数学 10時間" />
+            <div class="date-inline">
+              <input id="goalTargetInput" class="field" placeholder="目標時間 例：10" />
+              <span class="unit-chip">時間</span>
+            </div>
+            <input id="goalSubjectInput" class="field" placeholder="科目 例：数学" />
+            <button id="addGoalBtn" class="full-btn">＋ 目標を追加</button>
+          </section>
 
           <div class="section-heading">進行中の目標</div>
-
-          <section class="goal-box">
-            <div class="goal-main-title">今週の数学 10時間</div>
-            <div class="goal-progress-text">3.5 / 10時間</div>
-            <div class="progress-track"><div class="progress-fill" style="width:35%"></div></div>
-            <div class="goal-actions"><span>35%</span><div><button class="small-btn">+1h</button><button class="small-btn">+0.5h</button></div></div>
-          </section>
-
-          <section class="goal-box">
-            <div class="goal-main-title">英語リスニング 5時間</div>
-            <div class="goal-progress-text">2 / 5時間</div>
-            <div class="progress-track"><div class="progress-fill" style="width:40%"></div></div>
-            <div class="goal-actions"><span>40%</span><div><button class="small-btn">+1h</button><button class="small-btn">+0.5h</button></div></div>
-          </section>
+          <div id="goalList" class="goal-list"></div>
         </section>
 
         <section class="page" data-page="tips">
@@ -409,25 +404,39 @@
             </div>
           </div>
 
-          <div class="chips tips-row">
-            <button class="chip active">すべて</button>
-            <button class="chip">集中力</button>
-            <button class="chip">記憶術</button>
-            <button class="chip">健康</button>
-            <button class="chip">勉強法</button>
+          <div class="tips-monitor">
+            <div class="tips-monitor-head">
+              <div class="tips-badge"><svg><use href="#i-bulb"/></svg></div>
+              <div>
+                <div class="tips-monitor-title">Study Monitor</div>
+                <div class="tips-monitor-sub">学習中に役立つヒントを順番に確認できます</div>
+              </div>
+            </div>
+            <div class="chips tips-row">
+              <button class="chip active" data-tip-filter="all">すべて</button>
+              <button class="chip" data-tip-filter="集中力">集中力</button>
+              <button class="chip" data-tip-filter="記憶術">記憶術</button>
+              <button class="chip" data-tip-filter="健康">健康</button>
+              <button class="chip" data-tip-filter="勉強法">勉強法</button>
+            </div>
+
+            <section class="tip-monitor-card">
+              <div class="tip-monitor-meta">
+                <span id="tipCategoryChip" class="tip-category-chip">集中力</span>
+                <span id="tipCounter" class="tip-counter">1 / 1</span>
+              </div>
+              <div id="tipIconMount" class="tip-mark blue"><svg><use href="#i-clock"/></svg></div>
+              <div id="tipTitle" class="tip-box-title">ポモドーロ・テクニック</div>
+              <div id="tipText" class="tip-box-text">25分間集中して5分休憩を繰り返す方法。</div>
+              <div class="tip-monitor-actions">
+                <button id="prevTipBtn" class="small-btn">前へ</button>
+                <button id="nextTipBtn" class="small-btn">次へ</button>
+                <button id="randomTipBtn" class="small-btn">ランダム</button>
+              </div>
+            </section>
           </div>
 
-          <section class="tip-box">
-            <div class="tip-mark blue"><svg><use href="#i-clock"/></svg></div>
-            <div class="tip-box-title">ポモドーロ・テクニック</div>
-            <div class="tip-box-text">25分間集中して5分休憩を繰り返す方法。脳が最も集中できる時間単位に合わせた効果的なテクニックです。</div>
-          </section>
-
-          <section class="tip-box">
-            <div class="tip-mark purple"><svg><use href="#i-chart"/></svg></div>
-            <div class="tip-box-title">スペースド・リピティション</div>
-            <div class="tip-box-text">間隔を空けて復習する方法。忘却曲線に基づき、最適なタイミングで復習することで長期記憶に定着させます。</div>
-          </section>
+          <div id="tipList" class="tip-list"></div>
         </section>
       </main>
     </div>
