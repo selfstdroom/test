@@ -42,10 +42,10 @@ const barsMount = document.getElementById('barsMount');
 const legendList = document.getElementById('legendList');
 const sessionList = document.getElementById('sessionList');
 
-const LS_TASKS = 'studylab_v3_tasks';
-const LS_SESSIONS = 'studylab_v3_sessions';
-const LS_MEMO_SUBJECT = 'studylab_v3_memo_subject';
-const LS_MEMO_TEXT = 'studylab_v3_memo_text';
+const LS_TASKS = 'studylab_v4_tasks';
+const LS_SESSIONS = 'studylab_v4_sessions';
+const LS_MEMO_SUBJECT = 'studylab_v4_memo_subject';
+const LS_MEMO_TEXT = 'studylab_v4_memo_text';
 
 let filter = 'all';
 let tasks = load(LS_TASKS, [
@@ -58,8 +58,10 @@ let sessions = load(LS_SESSIONS, []);
 let timerSeconds = 25 * 60;
 let timerInterval = null;
 let timerRunning = false;
-let cameraStream = null;
+let isBreakMode = false;
+let studySecondsBeforeBreak = 25 * 60;
 let sessionCount = sessions.length;
+let cameraStream = null;
 
 function id(){ return Math.random().toString(36).slice(2, 9); }
 function load(key, fallback){
@@ -73,22 +75,29 @@ function load(key, fallback){
 function save(key, value){
   localStorage.setItem(key, JSON.stringify(value));
 }
-function openDrawer(){ drawer.classList.add('open'); shade.classList.add('show'); }
-function closeDrawer(){ drawer.classList.remove('open'); shade.classList.remove('show'); }
+function openDrawer(){
+  drawer.classList.add('open');
+  shade.classList.add('show');
+}
+function closeDrawer(){
+  drawer.classList.remove('open');
+  shade.classList.remove('show');
+}
 function showPage(page){
   pages.forEach(p => p.classList.toggle('active', p.dataset.page === page));
   navItems.forEach(n => n.classList.toggle('active', n.dataset.page === page));
   closeDrawer();
   if (page === 'records' || page === 'dashboard') renderStats();
 }
-menuBtn.addEventListener('click', openDrawer);
-shade.addEventListener('click', closeDrawer);
+if (menuBtn) menuBtn.addEventListener('click', openDrawer);
+if (shade) shade.addEventListener('click', closeDrawer);
 navItems.forEach(item => item.addEventListener('click', () => showPage(item.dataset.page)));
 document.querySelectorAll('[data-go]').forEach(btn => btn.addEventListener('click', () => showPage(btn.dataset.go)));
 
 function formatTimer(sec){
-  const m = Math.floor(sec / 60).toString().padStart(2, '0');
-  const s = (sec % 60).toString().padStart(2, '0');
+  const safe = Math.max(0, sec);
+  const m = Math.floor(safe / 60).toString().padStart(2, '0');
+  const s = (safe % 60).toString().padStart(2, '0');
   return `${m}:${s}`;
 }
 function renderTimer(){
@@ -97,45 +106,81 @@ function renderTimer(){
 function updateTimerLabel(text){
   timerLabel.textContent = text;
 }
-startPauseBtn.addEventListener('click', () => {
-  if (!timerRunning){
-    timerRunning = true;
-    updateTimerLabel('学習中');
-    teacherMessage.textContent = 'そのまま集中を維持しましょう';
-    timerInterval = setInterval(() => {
-      if (timerSeconds > 0){
-        timerSeconds -= 1;
+function stopTimerLoop(){
+  clearInterval(timerInterval);
+  timerInterval = null;
+  timerRunning = false;
+}
+function startStudyLoop(){
+  stopTimerLoop();
+  timerRunning = true;
+  timerInterval = setInterval(() => {
+    if (timerSeconds > 0){
+      timerSeconds -= 1;
+      renderTimer();
+    } else {
+      stopTimerLoop();
+      if (isBreakMode){
+        timerSeconds = studySecondsBeforeBreak;
+        isBreakMode = false;
         renderTimer();
+        updateTimerLabel('学習再開待ち');
+        teacherMessage.textContent = '休憩が終わりました。再開しましょう';
       } else {
-        clearInterval(timerInterval);
-        timerRunning = false;
         sessionCount += 1;
         sessionMeta.textContent = `${sessionCount}セッション完了`;
         updateTimerLabel('完了');
         teacherMessage.textContent = '1セッション完了です。良い流れです';
       }
-    }, 1000);
+    }
+  }, 1000);
+}
+
+renderTimer();
+
+startPauseBtn.addEventListener('click', () => {
+  if (!timerRunning){
+    if (timerSeconds <= 0 && !isBreakMode){
+      timerSeconds = 25 * 60;
+      renderTimer();
+    }
+    updateTimerLabel(isBreakMode ? '休憩中' : '学習中');
+    teacherMessage.textContent = isBreakMode ? '休憩中です。戻ったら再開しましょう' : 'そのまま集中を維持しましょう';
+    startStudyLoop();
   } else {
-    timerRunning = false;
-    clearInterval(timerInterval);
-    updateTimerLabel('一時停止');
-    teacherMessage.textContent = '短く整えてから再開しましょう';
+    stopTimerLoop();
+    updateTimerLabel(isBreakMode ? '休憩を停止中' : '一時停止');
+    teacherMessage.textContent = '少し整えてから再開しましょう';
   }
 });
+
 resetTimerBtn.addEventListener('click', () => {
-  timerRunning = false;
-  clearInterval(timerInterval);
+  stopTimerLoop();
+  isBreakMode = false;
   timerSeconds = 25 * 60;
+  studySecondsBeforeBreak = timerSeconds;
   renderTimer();
   updateTimerLabel('待機中');
+  teacherMessage.textContent = 'タイマーをリセットしました';
 });
+
 breakBtn.addEventListener('click', () => {
-  timerRunning = false;
-  clearInterval(timerInterval);
-  timerSeconds = 5 * 60;
-  renderTimer();
-  updateTimerLabel('休憩中');
-  teacherMessage.textContent = '休憩後にすぐ戻りましょう';
+  if (!isBreakMode){
+    studySecondsBeforeBreak = timerSeconds > 0 ? timerSeconds : 25 * 60;
+    timerSeconds = 5 * 60;
+    isBreakMode = true;
+    stopTimerLoop();
+    renderTimer();
+    updateTimerLabel('休憩中');
+    teacherMessage.textContent = '休憩に入りました。終わると元の学習時間に戻ります';
+  } else {
+    stopTimerLoop();
+    timerSeconds = studySecondsBeforeBreak;
+    isBreakMode = false;
+    renderTimer();
+    updateTimerLabel('学習再開待ち');
+    teacherMessage.textContent = '休憩を終了しました。学習に戻りましょう';
+  }
 });
 
 cameraToggleBtn.addEventListener('click', async () => {
@@ -166,7 +211,7 @@ memoText.addEventListener('input', () => localStorage.setItem(LS_MEMO_TEXT, memo
 
 saveSessionBtn.addEventListener('click', () => {
   const today = new Date().toISOString().slice(0,10);
-  const usedMinutes = Math.max(0, Math.floor((25*60 - timerSeconds) / 60));
+  const usedMinutes = Math.max(0, Math.floor((25*60 - Math.min(studySecondsBeforeBreak, timerSeconds)) / 60));
   const entry = {
     date: today,
     subject: memoSubject.value.trim() || '未設定',
@@ -182,10 +227,7 @@ saveSessionBtn.addEventListener('click', () => {
 });
 
 function renderTasks(){
-  const filtered = tasks.filter(t => {
-    if (filter === 'all') return true;
-    return t.status === filter;
-  });
+  const filtered = tasks.filter(t => filter === 'all' ? true : t.status === filter);
   taskCards.innerHTML = filtered.map(task => `
     <div class="task-card">
       <div class="task-left">${task.status === 'done' ? '●' : task.status === 'doing' ? '◔' : '○'}</div>
@@ -266,7 +308,7 @@ function renderStats(){
   todayMinutes.textContent = `${minutesToday()}分`;
   weekTotal.textContent = `${(totalMinutes / 60).toFixed(1)}h`;
   openTasks.textContent = String(openCount);
-  streakDays.textContent = `${Math.min(uniqueDays.length, 6)}日`;
+  streakDays.textContent = `${Math.min(uniqueDays.length || 0, 6)}日`;
 
   recordTotalHours.textContent = `${(totalMinutes / 60).toFixed(1)}h`;
   recordSessionCount.textContent = String(sessions.length);

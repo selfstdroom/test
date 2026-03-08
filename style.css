@@ -181,3 +181,28 @@ svg{width:1em;height:1em}
   .donut-area{grid-template-columns:1fr}
   .schedule-board{grid-template-columns:repeat(7,84px);overflow:auto}
 }
+
+
+/* v4 fixes */
+.topbar{
+  position: sticky;
+  top: 0;
+  z-index: 12;
+}
+.menu-btn{
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  color: #1f2937;
+  flex: 0 0 auto;
+}
+.menu-btn svg{
+  width: 24px;
+  height: 24px;
+}
+.drawer{
+  z-index: 40;
+}
+.drawer-shade{
+  z-index: 35;
+}
