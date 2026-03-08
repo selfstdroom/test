@@ -3,231 +3,458 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>オンライン自習室 | Focus Room v17</title>
-  <meta name="theme-color" content="#0b1020" />
+  <title>StudyLab Prototype v2</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="app-shell">
-    <div id="userWidget" class="floating-card floating-user hidden">
-      <div id="userWidgetHandle" class="floating-handle"><span>あなた</span><span class="drag-note">移動</span></div>
-      <div class="user-widget-video">
-        <video id="selfVideoThumb" autoplay playsinline muted></video>
-        <span class="camera-thumb-label">SELF</span>
-      </div>
-    </div>
-
-    <section id="prejoinScreen" class="screen active prejoin-screen">
-      <header class="prejoin-header">
-        <div>
-          <p class="eyebrow">FOCUS ROOM</p>
-          <h1>オンライン自習室</h1>
-          <p id="lineProfileName" class="subtitle">利用情報を読み込み中...</p>
+  <div class="stage">
+    <div class="phone">
+      <aside id="drawer" class="drawer">
+        <div class="drawer-brand">
+          <div class="drawer-brand-icon">🎓</div>
+          <div>
+            <div class="drawer-title">StudyLab</div>
+            <div class="drawer-sub">ONLINE STUDY ROOM</div>
+          </div>
         </div>
-      </header>
 
-      <main class="prejoin-main">
-        <section class="hero-card landing-hero">
-          <div class="hero-copy">
-            <p class="hero-badge">集中する準備を整えてから入室</p>
-            <h2>入室前に、今日やることだけ決める</h2>
-            <p class="hero-desc">最初はトップページとして使います。目標時間とタスクを決めてから入室し、設定後に集中ルームへ入室します。</p>
+        <nav class="drawer-nav">
+          <button class="drawer-item" data-page="dashboard">🏠 <span>ダッシュボード</span></button>
+          <button class="drawer-item active" data-page="studyroom">📷 <span>自習室</span></button>
+          <button class="drawer-item" data-page="tasks">📝 <span>タスク管理</span></button>
+          <button class="drawer-item" data-page="schedule">📅 <span>学習計画</span></button>
+          <button class="drawer-item" data-page="records">📊 <span>学習記録</span></button>
+          <button class="drawer-item" data-page="goals">🎯 <span>目標設定</span></button>
+          <button class="drawer-item" data-page="tips">💡 <span>学習のコツ</span></button>
+        </nav>
+
+        <div class="drawer-user">
+          <div class="drawer-user-icon">オ</div>
+          <div class="drawer-user-text">
+            <div class="drawer-user-name">オンライン自習室</div>
+            <div class="drawer-user-mail">selfstd.room@gmail.com</div>
           </div>
-          <div class="hero-summary">
-            <div class="summary-box"><span>目標時間</span><strong id="prejoinGoalLabel">25分</strong></div>
-            <div class="summary-box"><span>登録タスク</span><strong id="prejoinTaskCount">0件</strong></div>
+          <div class="drawer-user-exit">⎋</div>
+        </div>
+      </aside>
+
+      <div id="backdrop" class="backdrop"></div>
+
+      <div class="app">
+        <header class="topbar">
+          <button id="menuBtn" class="menu-btn">☰</button>
+          <div class="brand-mini">
+            <span class="brand-mini-icon">🎓</span>
+            <span class="brand-mini-text">StudyLab</span>
           </div>
-        </section>
+        </header>
 
-        <section class="setup-grid">
-          <section class="panel">
-            <div class="panel-header"><div><p class="eyebrow">STEP 1</p><h3>基本設定</h3></div></div>
-            <div class="form-stack">
-              <label class="field"><span>目標時間</span><select id="goalMinutesSelect"><option value="15">15分</option><option value="25" selected>25分</option><option value="30">30分</option><option value="45">45分</option><option value="60">60分</option><option value="90">90分</option></select></label>
-              <label class="field"><span>休憩時間</span><select id="breakMinutesSelect"><option value="3">3分</option><option value="5" selected>5分</option><option value="10">10分</option></select></label>
-              <label class="field"><span>講師表示名</span><input id="coachNameInput" type="text" maxlength="40" value="SENSEI ROOM" /></label>
-            </div>
-          </section>
+        <main class="scroll">
+          <section class="page" data-page="dashboard">
+            <div class="date-text">2026年3月8日 (SUNDAY)</div>
+            <h1 class="hero">こんばんは、オンライン自習室さん</h1>
+            <button class="blue-btn home-btn" data-go-study>📷 自習室に入る</button>
 
-          <section class="panel">
-            <div class="panel-header"><div><p class="eyebrow">STEP 2</p><h3>今日のタスク</h3></div><span id="taskSummaryCount" class="pill">0件</span></div>
-            <div class="form-stack compact-stack">
-              <label class="field"><span>タスク名</span><input id="taskTitleInput" type="text" maxlength="80" placeholder="例：英語長文 / 数学 / 動画編集" /></label>
-              <label class="field"><span>目標</span><input id="taskGoalInput" type="text" maxlength="120" placeholder="例：問題集10ページ / Unit3完了" /></label>
-              <div class="double-grid">
-                <label class="field"><span>予定時間</span><select id="taskEstimateSelect"><option value="15">15分</option><option value="30" selected>30分</option><option value="45">45分</option><option value="60">60分</option><option value="90">90分</option></select></label>
-                <label class="field"><span>優先度</span><select id="taskPrioritySelect"><option value="高" selected>高</option><option value="中">中</option><option value="低">低</option></select></label>
+            <div class="stats">
+              <div class="stat">
+                <div class="stat-top">
+                  <div class="stat-label">今日の学習</div>
+                  <div class="stat-badge blue">🕒</div>
+                </div>
+                <div class="stat-value">0分</div>
               </div>
-              <button id="addTaskBtn" class="btn btn-secondary">タスクを追加</button>
+
+              <div class="stat">
+                <div class="stat-top">
+                  <div class="stat-label">今週の合計</div>
+                  <div class="stat-badge green">📗</div>
+                </div>
+                <div class="stat-value">6.5h</div>
+              </div>
+
+              <div class="stat">
+                <div class="stat-top">
+                  <div class="stat-label">未完了タスク</div>
+                  <div class="stat-badge amber">☑</div>
+                </div>
+                <div class="stat-value">4</div>
+              </div>
+
+              <div class="stat">
+                <div class="stat-top">
+                  <div class="stat-label">連続学習</div>
+                  <div class="stat-badge red">🔥</div>
+                </div>
+                <div class="stat-value">6日</div>
+              </div>
             </div>
-            <div id="prejoinTaskList" class="task-list compact-list"><p class="empty-text">まだタスクがありません。</p></div>
+
+            <div class="card">
+              <div class="card-title">今週の学習時間</div>
+              <div class="week-chart">
+                <div class="axis">
+                  <span>1.8h</span>
+                  <span>1.35h</span>
+                  <span>0.9h</span>
+                  <span>0.45h</span>
+                </div>
+                <div class="columns">
+                  <div class="col" style="height:30%"></div>
+                  <div class="col" style="height:72%"></div>
+                  <div class="col" style="height:40%"></div>
+                  <div class="col" style="height:48%"></div>
+                  <div class="col" style="height:86%"></div>
+                  <div class="col" style="height:42%"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="section-label">クイックアクション</div>
+
+            <button class="quick-card" data-go-study>
+              <div class="quick-icon blue">📷</div>
+              <div class="quick-copy">
+                <div class="quick-title">自習室に入る</div>
+                <div class="quick-sub">カメラをオンにして集中</div>
+              </div>
+              <div class="quick-arrow">→</div>
+            </button>
+
+            <button class="quick-card" data-page-link="tasks">
+              <div class="quick-icon pale">📝</div>
+              <div class="quick-copy">
+                <div class="quick-title">タスク管理</div>
+                <div class="quick-sub">今日のやることを確認</div>
+              </div>
+              <div class="quick-arrow">→</div>
+            </button>
+
+            <button class="quick-card" data-page-link="records">
+              <div class="quick-icon blue">🕒</div>
+              <div class="quick-copy">
+                <div class="quick-title">学習記録</div>
+                <div class="quick-sub">学習の振り返り</div>
+              </div>
+              <div class="quick-arrow">→</div>
+            </button>
+
+            <div class="goal-box">
+              <div class="goal-meta">目標</div>
+              <div class="goal-name">今週の数学 10時間</div>
+              <div class="goal-small">3.5 / 10時間</div>
+              <div class="progress"><div class="fill" style="width:35%"></div></div>
+            </div>
+
+            <div class="goal-box">
+              <div class="goal-meta">目標</div>
+              <div class="goal-name">英語リスニング 5時間</div>
+              <div class="goal-small">2 / 5時間</div>
+              <div class="progress"><div class="fill" style="width:40%"></div></div>
+            </div>
           </section>
-        </section>
-      </main>
 
-      <footer class="prejoin-footer">
-        <div class="footer-note">設定後に集中ルームへ入室します。</div>
-        <button id="startBtn" class="btn btn-primary btn-large">設定して入室する</button>
-      </footer>
-    </section>
-
-    <section id="roomScreen" class="screen room-screen">
-      <header class="room-topbar">
-        <div class="room-title"><p class="eyebrow">FOCUS ROOM</p><h2>オンライン自習室</h2></div>
-        <div class="room-top-actions">
-          <button id="openHistoryBtn" class="icon-btn" aria-label="履歴">▤</button>
-          <button id="openSettingsBtn" class="icon-btn" aria-label="設定">⚙</button>
-        </div>
-      </header>
-
-      <section class="room-dashboard">
-        <div class="room-timer">
-          <span class="mini-label">残り時間</span>
-          <strong id="goalTimer">25:00</strong>
-          <div class="timer-subline"><span id="sessionType">未開始</span><span>集中 <strong id="focusScore">100</strong></span></div>
-        </div>
-
-        <div class="teacher-card">
-          <div class="teacher-head">
-            <div class="teacher-avatar-wrap">
-              <div class="teacher-ring outer"></div>
-              <div class="teacher-ring inner"></div>
-              <div class="teacher-avatar"><div class="coach-face"><span class="eye left"></span><span class="eye right"></span><span class="mouth"></span></div></div>
+          <section class="page active" data-page="studyroom">
+            <div class="room-head">
+              <div class="room-dot"></div>
+              <div>
+                <div class="page-title">オンライン自習室</div>
+                <div class="page-sub">講師が監視しています — 集中して学習しましょう</div>
+              </div>
             </div>
-            <div class="teacher-main">
-              <div class="teacher-row-top"><strong id="coachNameInline">SENSEI ROOM</strong><span id="coachStatePill" class="pill pill-danger">監視中</span></div>
-              <p id="coachWidgetStatus" class="teacher-status">学習状況を確認しています</p>
-              <div class="monitor-row"><span class="monitor-dot"></span><span id="monitoringText">在席確認中</span><span class="monitor-divider">/</span><span id="monitoringSubText">離席検知 有効</span></div>
+
+            <div class="camera-block">
+              <div class="camera-inner">
+                <div class="camera-icon-large">📷</div>
+                <div class="camera-copy">カメラをオンにして学習を始めましょう</div>
+                <button class="blue-btn small-center">📷 ON</button>
+              </div>
             </div>
-          </div>
-          <div class="teacher-alert"><p id="teacherAlertText">このルームでは離席・画面切替・学習停止を前提に確認しながら進行します。</p></div>
-        </div>
 
-        <div class="status-strip">
-          <div class="status-pill"><span>経過</span><strong id="elapsedTime">00:00:00</strong></div>
-          <div class="status-pill"><span>本日</span><strong id="dailyTotal">00:00</strong></div>
-          <div class="status-pill alert"><span>離席</span><strong id="blurCount">0</strong></div>
-          <div class="status-pill"><span>達成</span><strong id="completionRate">0%</strong></div>
-        </div>
-
-        <div class="active-task-box">
-          <p class="active-task-label">進行中タスク</p>
-          <strong id="activeTaskName">まだありません</strong>
-          <p id="activeTaskMeta" class="active-task-meta">進行中にしたタスクがここに表示されます。</p>
-        </div>
-      </section>
-
-      <main class="room-content">
-        <section id="viewActions" class="content-view active">
-          <div class="panel fill-panel">
-            <div class="panel-header"><div><p class="eyebrow">ACTIONS</p><h3>学習操作</h3></div></div>
-            <div class="message-card compact"><p class="section-label">メッセージ</p><p id="focusMessage" class="message-text">入室しました。今日のタスクを進めましょう。</p></div>
-            <div class="actions-grid">
-              <button id="pauseTimerBtn" class="btn btn-secondary" disabled>一時停止</button>
-              <button id="breakBtn" class="btn btn-secondary" disabled>休憩する</button>
-              <button id="endBreakBtn" class="btn btn-secondary" disabled>休憩終了</button>
-              <button id="nextMsgBtn" class="btn btn-secondary">メッセージ更新</button>
-              <button id="leaveBtn" class="btn btn-danger btn-span-2">退出</button>
+            <div class="timer-panel">
+              <div class="timer-dot"></div>
+              <div class="timer-ring">
+                <div class="timer-number">24:50</div>
+                <div class="timer-subtext">学習中</div>
+              </div>
+              <div class="timer-buttons">
+                <button class="round">↺</button>
+                <button class="round primary">▶</button>
+                <button class="round">☕</button>
+              </div>
+              <div class="timer-foot">0セッション完了</div>
             </div>
-            <div class="two-mini">
-              <div class="mini-stat"><span>ルーム状態</span><strong id="watchState">待機中</strong></div>
-              <div class="mini-stat"><span>カメラ状態</span><strong id="cameraStatus">待機中</strong></div>
-            </div>
-          </div>
-        </section>
 
-        <section id="viewTasks" class="content-view">
-          <div class="panel fill-panel">
-            <div class="panel-header"><div><p class="eyebrow">TASKS</p><h3>タスク管理</h3></div><span id="roomTaskCount" class="pill">0件</span></div>
-            <div id="roomTaskList" class="task-list scroll-list"><p class="empty-text">タスクがありません。</p></div>
-          </div>
-        </section>
-
-        <section id="viewRoom" class="content-view">
-          <div class="panel fill-panel">
-            <div class="panel-header"><div><p class="eyebrow">ROOM</p><h3>ルーム機能</h3></div></div>
-            <div class="actions-grid room-actions">
-              <button id="toggleCamBtn" class="btn btn-secondary" disabled>カメラ停止</button>
-              <button id="wakeLockBtn" class="btn btn-secondary">スリープ防止</button>
-              <button id="fullscreenBtn" class="btn btn-secondary">フルスクリーン</button>
-              <button id="restartSessionBtn" class="btn btn-secondary">設定で再開始</button>
+            <div class="card">
+              <div class="card-head">📝 学習メモ</div>
+              <input class="field" placeholder="今日の学習科目" />
+              <textarea class="field textarea" placeholder="メモ・気づき・やったこと..."></textarea>
+              <div class="memo-row">
+                <div class="memo-total">✨ 累計: 0分</div>
+                <button class="blue-btn">💾 セッションを保存</button>
+              </div>
             </div>
-            <div class="camera-frame flex-camera"><video id="selfVideoMain" autoplay playsinline muted></video><span class="camera-large-label">SELF VIEW</span></div>
-            <div class="double-grid bottom-gap">
-              <label class="field"><span>サウンド種別</span><select id="soundModeSelect"><option value="off" selected>オフ</option><option value="white">ホワイトノイズ</option><option value="brown">ブラウンノイズ</option><option value="tone">集中トーン</option></select></label>
-              <label class="field"><span>音量</span><input id="soundVolumeRange" type="range" min="0" max="100" value="20" /></label>
-            </div>
-            <button id="soundToggleBtn" class="btn btn-secondary">サウンド開始</button>
-          </div>
-        </section>
 
-        <section id="viewStats" class="content-view">
-          <div class="panel fill-panel">
-            <div class="panel-header"><div><p class="eyebrow">STATS</p><h3>記録</h3></div></div>
-            <div class="stats-grid-2">
-              <div class="mini-stat"><span>今週合計</span><strong id="weeklyTotal">0分</strong></div>
-              <div class="mini-stat"><span>連続日数</span><strong id="streakDays">0日</strong></div>
-              <div class="mini-stat"><span>休憩回数</span><strong id="breakCount">0</strong></div>
-              <div class="mini-stat"><span>停止回数</span><strong id="pauseCount">0</strong></div>
-              <div class="mini-stat"><span>昨日との差</span><strong id="dailyComparison">±0分</strong></div>
-              <div class="mini-stat"><span>カメラ停止時間</span><strong id="camOffTime">0秒</strong></div>
-              <div class="mini-stat"><span>起動方法</span><strong id="launchMode">通常ブラウザ</strong></div>
-              <div class="mini-stat"><span>監視状態</span><strong id="statsMonitorState">在席確認前</strong></div>
+            <div class="card">
+              <div class="supervisor">
+                <div class="supervisor-main">
+                  <div class="supervisor-icon">🛡</div>
+                  <div>
+                    <div class="supervisor-title">監督講師</div>
+                    <div class="supervisor-sub">オンライン</div>
+                  </div>
+                </div>
+                <div class="supervisor-pill">👁 あなたの学習を監視中</div>
+              </div>
             </div>
-            <div class="message-card compact"><p class="section-label">監視メッセージ</p><p id="statsTeacherAlert" class="message-text">このルームでは離席・画面切替・学習停止を前提に確認しながら進行します。</p></div>
-            <div class="two-mini">
-              <button id="statsOpenHistoryBtn" class="btn btn-secondary">履歴を見る</button>
-              <button id="exportLogsBtn" class="btn btn-secondary">ログを書き出す</button>
+
+            <div class="card">
+              <div class="card-head">💬 講師からのメッセージ</div>
+              <div class="message">素晴らしい集中力です</div>
             </div>
-          </div>
-        </section>
-      </main>
+          </section>
 
-      <nav class="bottom-tabs">
-        <button id="tabActionsBtn" class="bottom-tab active">操作</button>
-        <button id="tabTasksBtn" class="bottom-tab">タスク</button>
-        <button id="tabRoomBtn" class="bottom-tab">ルーム</button>
-        <button id="tabStatsBtn" class="bottom-tab">記録</button>
-      </nav>
-    </section>
+          <section class="page" data-page="tasks">
+            <div class="page-head">
+              <div class="page-icon pale">📝</div>
+              <div>
+                <div class="page-title">タスク管理</div>
+                <div class="page-sub">学習のやることリスト</div>
+              </div>
+            </div>
 
-    <div id="settingsModal" class="modal hidden">
-      <div class="modal-card">
-        <div class="modal-head"><div><p class="eyebrow">SETTINGS</p><h3>設定</h3></div><button id="closeSettingsBtn" class="icon-btn">×</button></div>
-        <div class="form-stack">
-          <label class="field"><span>目標時間</span><select id="modalGoalMinutesSelect"><option value="15">15分</option><option value="25" selected>25分</option><option value="30">30分</option><option value="45">45分</option><option value="60">60分</option><option value="90">90分</option></select></label>
-          <label class="field"><span>休憩時間</span><select id="modalBreakMinutesSelect"><option value="3">3分</option><option value="5" selected>5分</option><option value="10">10分</option></select></label>
-          <label class="field"><span>講師表示名</span><input id="modalCoachNameInput" type="text" maxlength="40" /></label>
-          <button id="saveSettingsBtn" class="btn btn-primary">設定を保存</button>
-        </div>
+            <div class="card">
+              <input class="field" placeholder="新しいタスクを追加..." />
+              <input class="field" placeholder="科目" />
+              <select class="field">
+                <option>中</option>
+                <option>高</option>
+                <option>低</option>
+              </select>
+              <div class="date-inline">
+                <input class="field" placeholder="年 / 月 / 日" />
+                <div class="date-icon">📅</div>
+              </div>
+              <button class="blue-btn full">＋ 追加</button>
+            </div>
+
+            <div class="chips">
+              <button class="chip active">すべて (5)</button>
+              <button class="chip">未着手 (3)</button>
+              <button class="chip">進行中 (1)</button>
+              <button class="chip">完了 (1)</button>
+            </div>
+
+            <div class="task-item">
+              <div class="task-state">◔</div>
+              <div class="task-content">
+                <div class="task-title">数学 第5章の問題集</div>
+                <div class="task-subline">数学　× 3/10</div>
+              </div>
+              <div class="priority high">↑ 高</div>
+            </div>
+
+            <div class="task-item">
+              <div class="task-state">○</div>
+              <div class="task-content">
+                <div class="task-title">英語単語帳 Unit 12-15</div>
+                <div class="task-subline">英語　× 3/8</div>
+              </div>
+              <div class="priority mid">→ 中</div>
+            </div>
+
+            <div class="task-item">
+              <div class="task-state">○</div>
+              <div class="task-content">
+                <div class="task-title">物理 力学レポート提出</div>
+                <div class="task-subline">物理　× 1/1</div>
+              </div>
+              <div class="priority high">↑ 高</div>
+            </div>
+          </section>
+
+          <section class="page" data-page="schedule">
+            <div class="page-head split">
+              <div class="page-head-left">
+                <div class="page-icon pale">📅</div>
+                <div>
+                  <div class="page-title">学習計画</div>
+                  <div class="page-sub">週間スケジュールを管理</div>
+                </div>
+              </div>
+              <button class="blue-btn top-add">＋ 予定を追加</button>
+            </div>
+
+            <div class="schedule-grid">
+              <div class="day">
+                <div class="day-name">月</div>
+                <div class="plan blue">09:00-10:30<br><b>数学</b><span>積分</span></div>
+                <div class="plan green tall">14:00-15:00<br><b>英語</b><span>長文</span></div>
+              </div>
+              <div class="day">
+                <div class="day-name">火</div>
+                <div class="plan yellow">10:00-11:30<br><b>物理</b><span>力学</span></div>
+              </div>
+              <div class="day">
+                <div class="day-name">水</div>
+                <div class="plan purple">09:00-10:00<br><b>化学</b><span>有機</span></div>
+              </div>
+              <div class="day">
+                <div class="day-name">木</div>
+                <div class="plan blue">13:00-14:30<br><b>数学</b><span>確率</span></div>
+              </div>
+              <div class="day">
+                <div class="day-name">金</div>
+                <div class="plan red">09:00-10:00<br><b>国語</b><span>古文</span></div>
+              </div>
+              <div class="day">
+                <div class="day-name">土</div>
+                <div class="plan green">10:00-12:00<br><b>英語</b><span>リス</span></div>
+              </div>
+              <div class="day">
+                <div class="day-name">日</div>
+              </div>
+            </div>
+          </section>
+
+          <section class="page" data-page="records">
+            <div class="page-head">
+              <div class="page-icon pale">📊</div>
+              <div>
+                <div class="page-title">学習記録</div>
+                <div class="page-sub">学習の成果を振り返ろう</div>
+              </div>
+            </div>
+
+            <div class="stats">
+              <div class="stat">
+                <div class="stat-top"><div class="stat-label">総学習時間</div><div class="stat-badge blue">🕒</div></div>
+                <div class="stat-value">6.5h</div>
+              </div>
+              <div class="stat">
+                <div class="stat-top"><div class="stat-label">セッション数</div><div class="stat-badge green">📘</div></div>
+                <div class="stat-value">7</div>
+              </div>
+              <div class="stat">
+                <div class="stat-top"><div class="stat-label">1日平均</div><div class="stat-badge amber">↗</div></div>
+                <div class="stat-value">65分</div>
+              </div>
+              <div class="stat">
+                <div class="stat-top"><div class="stat-label">科目数</div><div class="stat-badge red">📉</div></div>
+                <div class="stat-value">5</div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-title">過去14日間の学習推移</div>
+              <div class="records-chart">
+                <div class="axis tall-axis">
+                  <span>120分</span><span>90分</span><span>60分</span><span>30分</span><span>0分</span>
+                </div>
+                <div class="columns bars-9">
+                  <div class="col" style="height:0%"></div>
+                  <div class="col" style="height:0%"></div>
+                  <div class="col" style="height:0%"></div>
+                  <div class="col" style="height:34%"></div>
+                  <div class="col" style="height:75%"></div>
+                  <div class="col" style="height:42%"></div>
+                  <div class="col" style="height:50%"></div>
+                  <div class="col" style="height:85%"></div>
+                  <div class="col" style="height:44%"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-title">科目別の内訳</div>
+              <div class="donut-block">
+                <div class="donut"></div>
+                <div class="legend-list">
+                  <div><span><i class="dot blue"></i>英語</span><b>165分</b></div>
+                  <div><span><i class="dot green"></i>数学</span><b>110分</b></div>
+                  <div><span><i class="dot amber"></i>化学</span><b>45分</b></div>
+                  <div><span><i class="dot purple"></i>国語</span><b>40分</b></div>
+                  <div><span><i class="dot red"></i>物理</span><b>30分</b></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-title">最近のセッション</div>
+              <div class="recent">
+                <div class="recent-row"><span>😊 数学<br><small>2026-03-07</small></span><b>50分</b></div>
+                <div class="recent-row"><span>😍 英語<br><small>2026-03-06</small></span><b>75分</b></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="page" data-page="goals">
+            <div class="page-head split">
+              <div class="page-head-left">
+                <div class="page-icon pale">🎯</div>
+                <div>
+                  <div class="page-title">目標設定</div>
+                  <div class="page-sub">学習目標を設定して達成しよう</div>
+                </div>
+              </div>
+              <button class="blue-btn top-add">＋ 目標を追加</button>
+            </div>
+
+            <div class="section-label">進行中の目標</div>
+
+            <div class="goal-large">
+              <div class="goal-name">今週の数学 10時間</div>
+              <div class="goal-small">3.5 / 10時間</div>
+              <div class="progress"><div class="fill" style="width:35%"></div></div>
+              <div class="goal-row">
+                <span>35%</span>
+                <div><button class="mini-pill">+1h</button><button class="mini-pill">+0.5h</button></div>
+              </div>
+            </div>
+
+            <div class="goal-large">
+              <div class="goal-name">英語リスニング 5時間</div>
+              <div class="goal-small">2 / 5時間</div>
+              <div class="progress"><div class="fill" style="width:40%"></div></div>
+              <div class="goal-row">
+                <span>40%</span>
+                <div><button class="mini-pill">+1h</button><button class="mini-pill">+0.5h</button></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="page" data-page="tips">
+            <div class="page-head">
+              <div class="page-icon pale">💡</div>
+              <div>
+                <div class="page-title">学習のコツ</div>
+                <div class="page-sub">科学的に証明された勉強法とアドバイス</div>
+              </div>
+            </div>
+
+            <div class="chips tips">
+              <button class="chip active">すべて</button>
+              <button class="chip">集中力</button>
+              <button class="chip">記憶術</button>
+              <button class="chip">健康</button>
+              <button class="chip">勉強法</button>
+            </div>
+
+            <div class="tip">
+              <div class="tip-badge blue">🕒</div>
+              <div class="tip-title">ポモドーロ・テクニック</div>
+              <div class="tip-body">25分間集中して5分休憩を繰り返す方法。脳が最も集中できる時間単位に合わせた効果的なテクニックです。</div>
+            </div>
+
+            <div class="tip">
+              <div class="tip-badge purple">🧠</div>
+              <div class="tip-title">スペースド・リピティション</div>
+              <div class="tip-body">間隔を空けて復習する方法。忘却曲線に基づき、最適なタイミングで復習することで長期記憶に定着させます。</div>
+            </div>
+          </section>
+        </main>
       </div>
-    </div>
-
-    <div id="reportModal" class="modal hidden">
-      <div class="modal-card">
-        <div class="modal-head"><div><p class="eyebrow">REPORT</p><h3>今回の学習レポート</h3></div><button id="closeReportBtn" class="icon-btn">×</button></div>
-        <div id="reportBody" class="report-body"></div>
-        <div class="form-stack report-goal-block">
-          <label class="field"><span>次回目標</span><input id="postNextGoalInput" type="text" maxlength="120" placeholder="次回の目標を入力" /></label>
-          <button id="saveNextGoalBtn" class="btn btn-secondary">次回目標を保存</button>
-        </div>
-        <div class="modal-actions"><button id="copyReportBtn" class="btn btn-secondary">レポートをコピー</button></div>
-      </div>
-    </div>
-
-    <div id="historyModal" class="modal hidden">
-      <div class="modal-card">
-        <div class="modal-head"><div><p class="eyebrow">HISTORY</p><h3>セッション履歴</h3></div><button id="closeHistoryBtn" class="icon-btn">×</button></div>
-        <div id="historyBody" class="history-body"></div>
-      </div>
-    </div>
-
-    <div id="hiddenOverlay" class="hidden-overlay hidden">
-      <div class="hidden-card"><h3>自習画面に戻ってください</h3><p>この画面に戻って、そのまま学習を続けましょう。</p></div>
     </div>
   </div>
-  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
-  <script src="config.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
