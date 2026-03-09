@@ -3,64 +3,54 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>StudyLab Free</title>
+  <title>StudyLab</title>
+  <meta name="theme-color" content="#f6f8fc" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <svg width="0" height="0" style="position:absolute">
     <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
-    <symbol id="i-cap" viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5L2 9zM6 11.5V16c0 1.8 3 3 6 3s6-1.2 6-3v-4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
-    <symbol id="i-home" viewBox="0 0 24 24"><path d="M4 10.5L12 4l8 6.5V20H4v-9.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M4 10.5L12 4l8 6.5V20H4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
     <symbol id="i-camera" viewBox="0 0 24 24"><path d="M4 8h4l1.5-2h5L16 8h4v11H4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="13.5" r="3.5" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
-    <symbol id="i-tasks" viewBox="0 0 24 24"><path d="M9 7h10M9 12h10M9 17h10M4.5 7h.01M4.5 12h.01M4.5 17h.01" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
-    <symbol id="i-calendar" viewBox="0 0 24 24"><path d="M7 3v3M17 3v3M4 9h16M5 5h14a1 1 0 0 1 1 1v13H4V6a1 1 0 0 1 1-1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-checklist" viewBox="0 0 24 24"><path d="M9 7h10M9 12h10M9 17h10M4.5 7h.01M4.5 12h.01M4.5 17h.01" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
     <symbol id="i-chart" viewBox="0 0 24 24"><path d="M5 19V9M12 19V5M19 19v-7M4 19h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
-    <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></symbol>
     <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M8 14c-1.5-1.2-2.5-3-2.5-5A6.5 6.5 0 0 1 12 2.5 6.5 6.5 0 0 1 18.5 9c0 2-1 3.8-2.5 5l-.8 2H8.8L8 14z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7.5v5l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
-    <symbol id="i-book" viewBox="0 0 24 24"><path d="M5 5.5A2.5 2.5 0 0 1 7.5 3H19v16H7.5A2.5 2.5 0 0 0 5 21V5.5zM5 5.5A2.5 2.5 0 0 1 7.5 8H19" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
-    <symbol id="i-fire" viewBox="0 0 24 24"><path d="M14.5 4s.7 2.5-1.7 4.5c-1.5 1.3-2.2 2.5-2.2 4A4.4 4.4 0 0 0 15 17a4.7 4.7 0 0 0 4.5-4.8c0-4-3.5-6-5-8.2zM8.6 13.8A3.7 3.7 0 0 0 12.2 19 3.8 3.8 0 0 0 16 15.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
-    <symbol id="i-save" viewBox="0 0 24 24"><path d="M5 4h11l3 3v13H5zM8 4v6h8V4M9 19h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
-    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 5-3.2 8.2-7 10-3.8-1.8-7-5-7-10V6l7-3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
-    <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6z" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="2.7" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
-    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M5 18l-1 3 3-1h10a4 4 0 0 0 4-4V8a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v8a4 4 0 0 0 2 3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
-    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 6v5h-5M4 18v-5h5M6.5 9A7 7 0 0 1 18 7.5L20 11M18 15a7 7 0 0 1-12 1.5L4 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-    <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 6l10 6-10 6z" fill="currentColor"/></symbol>
     <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 6h3v12H8zM13 6h3v12h-3z" fill="currentColor"/></symbol>
-    <symbol id="i-coffee" viewBox="0 0 24 24"><path d="M5 8h9v5a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V8zM14 9h2a2 2 0 0 1 0 4h-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M6 20h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
     <symbol id="i-rotate" viewBox="0 0 24 24"><path d="M8 8H4V4M4.5 11a7.5 7.5 0 1 1 2 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-coffee" viewBox="0 0 24 24"><path d="M5 8h9v5a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V8zM14 9h2a2 2 0 0 1 0 4h-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M6 20h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-save" viewBox="0 0 24 24"><path d="M5 4h11l3 3v13H5zM8 4v6h8V4M9 19h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-fullscreen" viewBox="0 0 24 24"><path d="M8 4H4v4M16 4h4v4M20 16v4h-4M4 16v4h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
     <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v10M8 10l4 4 4-4M5 19h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 20V10M8 14l4-4 4 4M5 5h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M7 7l1 12h8l1-12M10 11v5M14 11v5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 16l4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 4.5l2.3 4.8 5.2.8-3.8 3.7.9 5.2L12 16.5 7.4 19l.9-5.2-3.8-3.7 5.2-.8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="M10 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 10V7.5a4 4 0 1 1 8 0V10" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
   </svg>
 
-  <div class="device">
+  <div class="app-shell">
     <aside id="drawer" class="drawer">
       <div class="drawer-brand">
-        <div class="brand-badge"><svg><use href="#i-cap"/></svg></div>
+        <div class="brand-mark">S</div>
         <div>
           <div class="brand-title">StudyLab</div>
-          <div class="brand-sub">FREE MEMBER</div>
+          <div class="brand-sub">LINEで開く学習ルーム</div>
         </div>
       </div>
 
       <nav class="drawer-nav">
-        <button class="nav-item active" data-page="dashboard"><span class="nav-icon"><svg><use href="#i-home"/></svg></span><span>ダッシュボード</span></button>
+        <button class="nav-item active" data-page="dashboard"><span class="nav-icon"><svg><use href="#i-home"/></svg></span><span>ホーム</span></button>
         <button class="nav-item" data-page="studyroom"><span class="nav-icon"><svg><use href="#i-camera"/></svg></span><span>自習室</span></button>
-        <button class="nav-item" data-page="tasks"><span class="nav-icon"><svg><use href="#i-tasks"/></svg></span><span>タスク管理</span></button>
-        <button class="nav-item" data-page="schedule"><span class="nav-icon"><svg><use href="#i-calendar"/></svg></span><span>学習計画</span></button>
-        <button class="nav-item" data-page="records"><span class="nav-icon"><svg><use href="#i-chart"/></svg></span><span>学習記録</span></button>
-        <button class="nav-item" data-page="goals"><span class="nav-icon"><svg><use href="#i-target"/></svg></span><span>目標設定</span></button>
-        <button class="nav-item" data-page="tips"><span class="nav-icon"><svg><use href="#i-bulb"/></svg></span><span>学習のコツ</span></button>
+        <button class="nav-item" data-page="tasks"><span class="nav-icon"><svg><use href="#i-checklist"/></svg></span><span>タスク</span></button>
+        <button class="nav-item" data-page="records"><span class="nav-icon"><svg><use href="#i-chart"/></svg></span><span>記録</span></button>
+        <button class="nav-item" data-page="tips"><span class="nav-icon"><svg><use href="#i-bulb"/></svg></span><span>ティップス</span></button>
       </nav>
 
-      <div class="drawer-user">
-        <div class="user-dot">無</div>
-        <div class="user-meta">
-          <div class="user-name">無料会員モード</div>
-          <div class="user-mail">この端末に保存</div>
-        </div>
+      <div class="drawer-bottom">
+        <div class="drawer-note">有料版で追加予定の機能はここでは表示していません。</div>
       </div>
     </aside>
 
@@ -69,204 +59,263 @@
     <div class="app">
       <header class="topbar">
         <button id="menuBtn" class="icon-btn plain"><svg><use href="#i-menu"/></svg></button>
-        <div class="topbar-brand">
-          <span class="topbar-icon"><svg><use href="#i-cap"/></svg></span>
-          <span class="topbar-title">StudyLab</span>
+        <div class="topbar-title-wrap">
+          <div class="topbar-title">StudyLab</div>
+          <div class="topbar-sub" id="profileLine">LINEからすぐ使える学習ルーム</div>
         </div>
       </header>
 
       <main class="screen">
         <section class="page active" data-page="dashboard">
-          <div class="date-row">今日の学習状況</div>
-          <h1 class="home-title">無料会員ダッシュボード</h1>
-          <button class="cta-btn" data-go="studyroom"><svg><use href="#i-camera"/></svg><span>自習室に入る</span></button>
+          <div class="hero-card">
+            <div class="hero-eyebrow">HOME</div>
+            <h1>集中を始める準備を整える</h1>
+            <p>今日の状況を確認して、そのまま自習室へ入れます。</p>
+            <button class="primary-btn" data-go="studyroom"><svg><use href="#i-camera"/></svg><span>自習室を開く</span></button>
+          </div>
 
           <div class="metric-grid">
-            <article class="metric-card"><div class="metric-label">今日の学習</div><div class="metric-value" id="todayMinutes">0分</div><div class="metric-bubble blue"><svg><use href="#i-clock"/></svg></div></article>
-            <article class="metric-card"><div class="metric-label">総学習時間</div><div class="metric-value" id="weekTotal">0h</div><div class="metric-bubble green"><svg><use href="#i-book"/></svg></div></article>
-            <article class="metric-card"><div class="metric-label">未完了タスク</div><div class="metric-value" id="openTasks">0</div><div class="metric-bubble amber"><svg><use href="#i-tasks"/></svg></div></article>
-            <article class="metric-card"><div class="metric-label">学習日数</div><div class="metric-value" id="streakDays">0日</div><div class="metric-bubble red"><svg><use href="#i-fire"/></svg></div></article>
+            <article class="metric-card">
+              <div class="metric-label">今日の学習</div>
+              <div class="metric-value" id="todayMinutes">0分</div>
+              <div class="metric-icon blue"><svg><use href="#i-clock"/></svg></div>
+            </article>
+            <article class="metric-card">
+              <div class="metric-label">総学習時間</div>
+              <div class="metric-value" id="totalHours">0h</div>
+              <div class="metric-icon green"><svg><use href="#i-chart"/></svg></div>
+            </article>
+            <article class="metric-card">
+              <div class="metric-label">未完了タスク</div>
+              <div class="metric-value" id="openTasks">0</div>
+              <div class="metric-icon amber"><svg><use href="#i-checklist"/></svg></div>
+            </article>
+            <article class="metric-card">
+              <div class="metric-label">達成率</div>
+              <div class="metric-value" id="completionRate">0%</div>
+              <div class="metric-icon purple"><svg><use href="#i-star"/></svg></div>
+            </article>
           </div>
 
           <section class="card">
-            <div class="card-title">クイックアクション</div>
-            <div class="action-list">
-              <button class="action-card" data-go="studyroom"><div class="action-icon blue"><svg><use href="#i-camera"/></svg></div><div class="action-main"><div class="action-title">自習室</div><div class="action-sub">カメラとタイマーで集中</div></div><div class="action-arrow"><svg><use href="#i-arrow-right"/></svg></div></button>
-              <button class="action-card" data-go="tasks"><div class="action-icon gray"><svg><use href="#i-tasks"/></svg></div><div class="action-main"><div class="action-title">タスク管理</div><div class="action-sub">やることを整理</div></div><div class="action-arrow"><svg><use href="#i-arrow-right"/></svg></div></button>
-              <button class="action-card" data-go="records"><div class="action-icon blue"><svg><use href="#i-chart"/></svg></div><div class="action-main"><div class="action-title">学習記録</div><div class="action-sub">保存した結果を確認</div></div><div class="action-arrow"><svg><use href="#i-arrow-right"/></svg></div></button>
+            <div class="section-title">今日の優先タスク</div>
+            <div id="priorityTasks" class="quick-list"></div>
+          </section>
+
+          <section class="card">
+            <div class="section-title">データ管理</div>
+            <div class="card-copy">このブラウザに保存されます。機種変更や再インストールに備えて、バックアップ保存もできます。</div>
+            <div class="tool-row">
+              <button id="exportDataBtn" class="small-btn"><svg><use href="#i-download"/></svg><span>保存</span></button>
+              <label class="small-btn file-label"><svg><use href="#i-upload"/></svg><span>復元</span><input id="importDataInput" type="file" accept="application/json" hidden /></label>
+              <button id="resetAllDataBtn" class="small-btn danger"><svg><use href="#i-trash"/></svg><span>全削除</span></button>
             </div>
           </section>
 
-          <section class="card free-mode-card">
-            <div class="card-title">無料会員モード</div>
-            <div class="free-mode-text">この端末のブラウザにデータを保存します。バックアップを書き出しておけば、あとで復元できます。</div>
-            <div class="data-tools">
-              <button id="exportDataBtn" class="small-btn icon-small"><svg><use href="#i-download"/></svg><span>バックアップ保存</span></button>
-              <label class="small-btn icon-small file-label"><svg><use href="#i-upload"/></svg><span>復元</span><input id="importDataInput" type="file" accept="application/json" hidden /></label>
-              <button id="resetAllDataBtn" class="small-btn goal-delete icon-small"><svg><use href="#i-trash"/></svg><span>全削除</span></button>
+          <section class="card teaser-card">
+            <div class="teaser-head">
+              <div class="teaser-icon"><svg><use href="#i-lock"/></svg></div>
+              <div>
+                <div class="section-title compact">有料版で追加予定</div>
+                <div class="card-copy">クラウド保存、複数端末同期、詳細分析、学習計画の強化など</div>
+              </div>
             </div>
           </section>
         </section>
 
         <section class="page" data-page="studyroom">
-          <div class="room-status">
-            <span class="status-dot"></span>
+          <div class="page-head">
+            <div class="page-icon"><svg><use href="#i-camera"/></svg></div>
             <div>
-              <div class="page-title">オンライン自習室</div>
-              <div class="page-sub">無料会員版 / カメラとタイマーで集中</div>
+              <div class="page-title">自習室</div>
+              <div class="page-copy">カメラとタイマーで学習を進めます</div>
             </div>
           </div>
 
-          <section class="camera-panel">
-            <div class="camera-box">
+          <section class="card">
+            <div class="camera-stage">
               <video id="cameraVideo" class="camera-video hidden" autoplay playsinline muted></video>
               <div id="cameraPlaceholder" class="camera-placeholder">
-                <div class="camera-off"><svg><use href="#i-camera"/></svg></div>
-                <div class="camera-note">カメラをオンにして学習を始めましょう</div>
-                <button id="cameraToggleBtn" class="camera-on-btn"><svg><use href="#i-camera"/></svg><span>カメラON/OFF</span></button>
+                <div class="camera-placeholder-icon"><svg><use href="#i-camera"/></svg></div>
+                <div class="camera-placeholder-text">カメラをオンにすると、自分の様子を確認しながら集中できます。</div>
               </div>
+            </div>
+            <div class="tool-row top-gap">
+              <button id="cameraToggleBtn" class="small-btn"><svg><use href="#i-camera"/></svg><span>カメラ</span></button>
+              <button id="fullscreenBtn" class="small-btn"><svg><use href="#i-fullscreen"/></svg><span>全画面</span></button>
+              <button id="wakeLockBtn" class="small-btn"><svg><use href="#i-lock"/></svg><span>画面維持</span></button>
             </div>
           </section>
 
-          <section class="timer-panel">
-            <div class="timer-top-dot"></div>
+          <section class="timer-card">
+            <div class="preset-row">
+              <button class="preset-chip active" data-preset="25">25分</button>
+              <button class="preset-chip" data-preset="15">15分</button>
+              <button class="preset-chip" data-preset="45">45分</button>
+              <button class="preset-chip" data-preset="60">60分</button>
+            </div>
             <div class="timer-ring">
               <div id="timerNumber" class="timer-number">25:00</div>
               <div id="timerLabel" class="timer-label">待機中</div>
             </div>
-            <div class="timer-buttons">
-              <button id="resetTimerBtn" class="round ghost"><svg><use href="#i-rotate"/></svg></button>
-              <button id="startPauseBtn" class="round primary"><svg><use href="#i-play"/></svg></button>
-              <button id="breakBtn" class="round ghost"><svg><use href="#i-coffee"/></svg></button>
+            <div class="timer-controls">
+              <button id="resetTimerBtn" class="round-btn ghost"><svg><use href="#i-rotate"/></svg></button>
+              <button id="startPauseBtn" class="round-btn primary"><svg><use href="#i-play"/></svg></button>
+              <button id="breakBtn" class="round-btn ghost"><svg><use href="#i-coffee"/></svg></button>
             </div>
             <div id="sessionMeta" class="timer-foot">0セッション完了</div>
           </section>
 
           <section class="card">
-            <div class="card-heading"><svg class="inline-ico"><use href="#i-save"/></svg> 学習メモ</div>
-            <input id="memoSubject" class="field" placeholder="今日の学習科目" />
-            <textarea id="memoText" class="field textarea" placeholder="メモ・気づき・やったこと..."></textarea>
+            <div class="section-title">進行中タスク</div>
+            <select id="activeTaskSelect" class="field"></select>
+            <input id="memoSubject" class="field" placeholder="学習科目" />
+            <textarea id="memoText" class="field textarea" placeholder="メモ・気づき・やったこと"></textarea>
             <div class="memo-bottom">
               <div id="memoTotal" class="memo-total">累計: 0分</div>
-              <button id="saveSessionBtn" class="save-btn"><svg><use href="#i-save"/></svg><span>セッションを保存</span></button>
+              <button id="saveSessionBtn" class="primary-btn compact"><svg><use href="#i-save"/></svg><span>セッション保存</span></button>
             </div>
           </section>
 
           <section class="card">
-            <div class="card-heading"><svg class="inline-ico"><use href="#i-chat"/></svg> メッセージ</div>
-            <div id="teacherMessage" class="teacher-message">タイマーを開始して学習を進めましょう</div>
+            <div class="section-title">メッセージ</div>
+            <div id="studyMessage" class="study-message">タイマーを始めて学習を進めましょう。</div>
           </section>
         </section>
 
         <section class="page" data-page="tasks">
-          <div class="page-head"><div class="head-icon"><svg><use href="#i-tasks"/></svg></div><div><div class="page-title">タスク管理</div><div class="page-sub">追加・状態変更・削除</div></div></div>
-          <section class="card">
-            <input id="taskTitleInput" class="field" placeholder="新しいタスクを追加..." />
-            <input id="taskSubjectInput" class="field" placeholder="科目" />
-            <select id="taskPriorityInput" class="field"><option value="中">中</option><option value="高">高</option><option value="低">低</option></select>
-            <input id="taskDateInput" class="field" placeholder="日付 例：2026/03/10" />
-            <button id="addTaskBtn" class="full-btn">＋ 追加</button>
-          </section>
-          <div class="chips">
-            <button class="chip active" data-filter="all">すべて</button>
-            <button class="chip" data-filter="todo">未着手</button>
-            <button class="chip" data-filter="doing">進行中</button>
-            <button class="chip" data-filter="done">完了</button>
+          <div class="page-head">
+            <div class="page-icon"><svg><use href="#i-checklist"/></svg></div>
+            <div>
+              <div class="page-title">タスク</div>
+              <div class="page-copy">検索・絞り込み・状態変更・削除ができます</div>
+            </div>
           </div>
-          <div id="taskCards" class="task-cards"></div>
-        </section>
 
-        <section class="page" data-page="schedule">
-          <div class="page-head"><div class="head-icon"><svg><use href="#i-calendar"/></svg></div><div><div class="page-title">学習計画</div><div class="page-sub">週間スケジュール</div></div></div>
           <section class="card">
-            <input id="scheduleTitleInput" class="field" placeholder="予定名 例：数学 積分" />
-            <div class="double-form-row">
-              <select id="scheduleDayInput" class="field"><option>月</option><option>火</option><option>水</option><option>木</option><option>金</option><option>土</option><option>日</option></select>
-              <input id="scheduleTimeInput" class="field" placeholder="時間 例：19:00-20:30" />
+            <input id="taskTitleInput" class="field" placeholder="タスク名" />
+            <div class="double-row">
+              <input id="taskSubjectInput" class="field" placeholder="科目" />
+              <input id="taskDateInput" class="field" placeholder="期限 例：2026/03/10" />
             </div>
-            <div class="double-form-row">
-              <input id="scheduleSubjectInput" class="field" placeholder="科目 例：数学" />
-              <select id="scheduleColorInput" class="field"><option value="blue">青</option><option value="green">緑</option><option value="yellow">黄</option><option value="purple">紫</option><option value="red">赤</option></select>
+            <div class="double-row">
+              <select id="taskPriorityInput" class="field">
+                <option value="高">高</option>
+                <option value="中" selected>中</option>
+                <option value="低">低</option>
+              </select>
+              <input id="taskEstimateInput" class="field" type="number" min="5" step="5" placeholder="予定分数 例：30" />
             </div>
-            <button id="addScheduleBtn" class="full-btn">＋ 予定を追加</button>
+            <textarea id="taskNoteInput" class="field textarea small" placeholder="メモ（任意）"></textarea>
+            <button id="addTaskBtn" class="primary-btn full"><svg><use href="#i-checklist"/></svg><span>追加する</span></button>
           </section>
-          <section id="scheduleBoard" class="schedule-board"></section>
-          <section class="card"><div class="card-title">予定一覧</div><div id="scheduleList" class="schedule-list"></div></section>
+
+          <section class="card">
+            <div class="search-field">
+              <svg><use href="#i-search"/></svg>
+              <input id="taskSearchInput" placeholder="タスク名 / 科目で検索" />
+            </div>
+            <div class="chip-row">
+              <button class="filter-chip active" data-filter="all">すべて</button>
+              <button class="filter-chip" data-filter="todo">未着手</button>
+              <button class="filter-chip" data-filter="doing">進行中</button>
+              <button class="filter-chip" data-filter="done">完了</button>
+            </div>
+          </section>
+
+          <div id="taskList" class="task-list"></div>
         </section>
 
         <section class="page" data-page="records">
-          <div class="page-head"><div class="head-icon"><svg><use href="#i-chart"/></svg></div><div><div class="page-title">学習記録</div><div class="page-sub">保存済みデータを集計</div></div></div>
-          <div class="metric-grid">
-            <article class="metric-card"><div class="metric-label">総学習時間</div><div id="recordTotalHours" class="metric-value">0h</div><div class="metric-bubble blue"><svg><use href="#i-clock"/></svg></div></article>
-            <article class="metric-card"><div class="metric-label">セッション数</div><div id="recordSessionCount" class="metric-value">0</div><div class="metric-bubble green"><svg><use href="#i-book"/></svg></div></article>
-            <article class="metric-card"><div class="metric-label">1日平均</div><div id="recordDailyAvg" class="metric-value">0分</div><div class="metric-bubble amber"><svg><use href="#i-chart"/></svg></div></article>
-            <article class="metric-card"><div class="metric-label">科目数</div><div id="recordSubjectCount" class="metric-value">0</div><div class="metric-bubble red"><svg><use href="#i-target"/></svg></div></article>
+          <div class="page-head">
+            <div class="page-icon"><svg><use href="#i-chart"/></svg></div>
+            <div>
+              <div class="page-title">記録</div>
+              <div class="page-copy">保存した学習データを確認できます</div>
+            </div>
           </div>
-          <section class="card">
-            <div class="card-title">最近の学習時間</div>
-            <div class="bar-chart short">
-              <div class="axis-labels"><span>120分</span><span>90分</span><span>60分</span><span>30分</span><span>0分</span></div>
-              <div id="barsMount" class="bars bars-nine"></div>
-            </div>
-          </section>
-          <section class="card">
-            <div class="card-title">科目別の内訳</div>
-            <div class="donut-area">
-              <div class="donut"></div>
-              <div id="legendList" class="legend-list"></div>
-            </div>
-          </section>
-          <section class="card"><div class="card-title">最近のセッション</div><div id="sessionList" class="session-list"></div></section>
-        </section>
 
-        <section class="page" data-page="goals">
-          <div class="page-head"><div class="head-icon"><svg><use href="#i-target"/></svg></div><div><div class="page-title">目標設定</div><div class="page-sub">追加・加算・削除</div></div></div>
+          <div class="metric-grid">
+            <article class="metric-card">
+              <div class="metric-label">総学習時間</div>
+              <div id="recordTotalHours" class="metric-value">0h</div>
+              <div class="metric-icon blue"><svg><use href="#i-clock"/></svg></div>
+            </article>
+            <article class="metric-card">
+              <div class="metric-label">セッション数</div>
+              <div id="recordSessionCount" class="metric-value">0</div>
+              <div class="metric-icon green"><svg><use href="#i-chart"/></svg></div>
+            </article>
+            <article class="metric-card">
+              <div class="metric-label">1日平均</div>
+              <div id="recordDailyAvg" class="metric-value">0分</div>
+              <div class="metric-icon amber"><svg><use href="#i-clock"/></svg></div>
+            </article>
+            <article class="metric-card">
+              <div class="metric-label">科目数</div>
+              <div id="recordSubjectCount" class="metric-value">0</div>
+              <div class="metric-icon purple"><svg><use href="#i-book"/></svg></div>
+            </article>
+          </div>
+
           <section class="card">
-            <input id="goalTitleInput" class="field" placeholder="目標名 例：今週の数学 10時間" />
-            <div class="double-form-row">
-              <input id="goalTargetInput" class="field" placeholder="目標時間 例：10" />
-              <input id="goalSubjectInput" class="field" placeholder="科目 例：数学" />
+            <div class="section-title">最近7件の学習時間</div>
+            <div class="bar-chart">
+              <div class="axis-labels"><span>120分</span><span>90分</span><span>60分</span><span>30分</span><span>0分</span></div>
+              <div id="barsMount" class="bars"></div>
             </div>
-            <button id="addGoalBtn" class="full-btn">＋ 目標を追加</button>
           </section>
-          <div class="section-heading">進行中の目標</div>
-          <div id="goalList" class="goal-list"></div>
+
+          <section class="card">
+            <div class="section-title">科目別の内訳</div>
+            <div id="legendList" class="legend-list"></div>
+          </section>
+
+          <section class="card">
+            <div class="section-title">最近のセッション</div>
+            <div id="sessionList" class="session-list"></div>
+          </section>
         </section>
 
         <section class="page" data-page="tips">
-          <div class="page-head"><div class="head-icon"><svg><use href="#i-bulb"/></svg></div><div><div class="page-title">学習のコツ</div><div class="page-sub">モニター形式で確認</div></div></div>
-          <div class="tips-monitor">
-            <div class="tips-monitor-head">
-              <div class="tips-badge"><svg><use href="#i-bulb"/></svg></div>
-              <div>
-                <div class="tips-monitor-title">Study Monitor</div>
-                <div class="tips-monitor-sub">学習中に使えるヒントを表示</div>
+          <div class="page-head">
+            <div class="page-icon"><svg><use href="#i-bulb"/></svg></div>
+            <div>
+              <div class="page-title">ティップス</div>
+              <div class="page-copy">学習に役立つヒントを切り替えて見られます</div>
+            </div>
+          </div>
+
+          <section class="card">
+            <div class="chip-row">
+              <button class="tip-chip active" data-tip-filter="all">すべて</button>
+              <button class="tip-chip" data-tip-filter="集中力">集中力</button>
+              <button class="tip-chip" data-tip-filter="記憶術">記憶術</button>
+              <button class="tip-chip" data-tip-filter="健康">健康</button>
+              <button class="tip-chip" data-tip-filter="勉強法">勉強法</button>
+            </div>
+            <div class="tip-monitor">
+              <div class="tip-monitor-top">
+                <span id="tipCategoryChip" class="tip-category">集中力</span>
+                <span id="tipCounter" class="tip-counter">1 / 1</span>
               </div>
-            </div>
-            <div class="chips tips-row">
-              <button class="chip active" data-tip-filter="all">すべて</button>
-              <button class="chip" data-tip-filter="集中力">集中力</button>
-              <button class="chip" data-tip-filter="記憶術">記憶術</button>
-              <button class="chip" data-tip-filter="健康">健康</button>
-              <button class="chip" data-tip-filter="勉強法">勉強法</button>
-            </div>
-            <section class="tip-monitor-card">
-              <div class="tip-monitor-meta"><span id="tipCategoryChip" class="tip-category-chip">集中力</span><span id="tipCounter" class="tip-counter">1 / 1</span></div>
-              <div id="tipIconMount" class="tip-mark blue"><svg><use href="#i-clock"/></svg></div>
-              <div id="tipTitle" class="tip-box-title">ポモドーロ・テクニック</div>
-              <div id="tipText" class="tip-box-text">25分間集中して5分休憩を繰り返す方法。</div>
-              <div class="tip-monitor-actions">
+              <div id="tipTitle" class="tip-title">ポモドーロ・テクニック</div>
+              <div id="tipText" class="tip-text">25分間集中して5分休憩を繰り返す方法。</div>
+              <div class="tool-row top-gap">
                 <button id="prevTipBtn" class="small-btn">前へ</button>
                 <button id="nextTipBtn" class="small-btn">次へ</button>
                 <button id="randomTipBtn" class="small-btn">ランダム</button>
               </div>
-            </section>
-          </div>
+            </div>
+          </section>
+
           <div id="tipList" class="tip-list"></div>
         </section>
       </main>
     </div>
   </div>
+
+  <script src="config.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
